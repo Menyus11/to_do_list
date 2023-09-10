@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Cookie from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
 import GuestNav from './GuestNav';
@@ -6,15 +6,22 @@ import GuestNav from './GuestNav';
 const Login = () => {
 
   const [user, setUser] = useState(null); 
+  const token = Cookie.get('token');
   const [data, setData] = useState({});
   const [result, setResult] = useState([]);
   const nav = useNavigate();
+
+  useEffect(() => {
+  if(token) {
+    nav('/todo')
+  } 
+  }, [])
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   }
 
-  const config = {
+  const configPost = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -24,7 +31,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('http://127.0.0.1:8000/api/login', config)
+    fetch('http://127.0.0.1:8000/api/login', configPost)
       .then(res => res.json())
       .then(res => {
         if(res.status === 'success') {
