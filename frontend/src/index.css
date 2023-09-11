@@ -1,11 +1,3 @@
-.lobster {
-  font-family: 'Lobster', cursive;
-}
-
-.dancing {
-  font-family: 'Dancing Script', cursive;
-}
-
 .courgette {
   font-family: 'Courgette', cursive;
 }
@@ -32,16 +24,4 @@
 
 .bg-green {
   background-color: #54A992;
-}
-
-.btn-outline-green {
-  color: #8FB59C;
-  border-color: #8FB59C;
-  background-color: transparent;
-}
-
-.btn-outline-green:hover {
-  color: #EDDBAD;
-  background-color: #54A992;
-  border-color: #54A992;
 }

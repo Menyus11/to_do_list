@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom'
 
 const GuestNav = () => {
     return (
-        <div className='lobster'>
-            <nav className="navbar navbar-expand-lg bg-lightGreen">
+        <div className='courgette'>
+            <nav className="navbar navbar-expand-lg bg-green">
                 <div className="container-fluid">
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

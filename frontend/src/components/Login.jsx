@@ -5,7 +5,6 @@ import GuestNav from './GuestNav';
 
 const Login = () => {
 
-  const [user, setUser] = useState(null); 
   const token = Cookie.get('token');
   const [data, setData] = useState({});
   const [result, setResult] = useState([]);
@@ -46,20 +45,20 @@ const Login = () => {
   return (
     <>
     <GuestNav />
-      <div className="container my-5 ">
+      <div className="container my-5 courgette">
         <form action="" className="bg-senf mx-auto border rounded p-3 w-75 mw488" onSubmit={handleSubmit}>
           <h3 className='text-center mb-4'><span className='lobster'>Belépés</span></h3>
 
           <div className="mb-4">
-            <input type="text" className="form-control bg-warning-subtle courgette" placeholder='Írd be az email címed!' name='email' id='email' onChange={handleChange} />
+            <input type="text" className="form-control bg-warning-subtle " placeholder='Írd be az email címed!' name='email' id='email' onChange={handleChange} />
           </div>
 
           <div className="mb-4">
-            <input type="password" className="form-control bg-warning-subtle courgette" placeholder='Írd be a jelszavad!' name='password' id='password' onChange={handleChange} />
+            <input type="password" className="form-control bg-warning-subtle" placeholder='Írd be a jelszavad!' name='password' id='password' onChange={handleChange} />
           </div>
 
           <div className="mb-2">
-            <button className="btn btn-outline-success form-control"><span className='courgette'>Belépek</span></button>
+            <button className="btn btn-outline-success form-control"><span>Belépek</span></button>
           </div>
 
           {result && result.status === 'error' && <div className="alert alert-danger mt-3 text-center">{result.message}</div>}

@@ -38,7 +38,7 @@ Route::post('/register', function (Request $request) {
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Sikeres regisztráció!',
+        'message' => 'Sikeres regisztráció, beléphet!',
         'user' => $user,
     ], 201);
 });

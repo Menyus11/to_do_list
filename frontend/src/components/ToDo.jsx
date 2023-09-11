@@ -31,7 +31,7 @@ const ToDo = () => {
     }, [])
      
   return (
-    <div>
+    <div className='courgette'>
         <UserNav/>
       <h3>To-Do</h3>
     </div>

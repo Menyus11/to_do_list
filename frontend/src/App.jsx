@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/Login'
 import Register from './components/Register'
 import ToDo from './components/ToDo'
-import Cookie from 'js-cookie'
 import Profile from './components/Profile'
 
 function App() {

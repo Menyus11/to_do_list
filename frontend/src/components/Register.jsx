@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import GuestNav from './GuestNav';
+import { useNavigate } from 'react-router-dom';
 
 const ErrorMsg = ({ result, field }) => <>{
   (result.status === 'error' && result.errors[field]) && <span className='text-danger'>{result.errors[field]}</span>
@@ -9,6 +10,7 @@ const Register = () => {
 
   const [data, setData] = useState({});
   const [result, setResult] = useState({ status: null })
+  const nav = useNavigate();
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -28,33 +30,38 @@ const Register = () => {
       .then(res => res.json())
       .then(res => {
         setResult(res);
+        if (res.status === 'success') {
+          setTimeout(() => {
+          nav('/')
+          }, 3000);
+        }
       })
   }
-/* console.log(result); */
+
   return (
     <>
-    <GuestNav />
+      <GuestNav />
       <div className="container my-5 courgette">
         <form action="" className="bg-senf mx-auto border rounded p-3 w-75 mw488" onSubmit={handleSubmit}>
           <h3 className='text-center mb-4'>Regisztráció</h3>
 
           <div className="mb-4">
-            <input type="text" className="form-control bg-warning-subtle" placeholder='Írd be a neved!' name='name' id='name' onChange={handleChange} />
+            <input type="text" className="form-control bg-warning-subtle" placeholder='Írd be a neved!' name='name' id='name' onChange={handleChange} defaultValue={data.name} />
             {<ErrorMsg result={result} field="name" />}
           </div>
 
           <div className="mb-4">
-            <input type="text" className="form-control bg-warning-subtle" placeholder='Írd be az email címed!' name='email' id='email' onChange={handleChange} />
+            <input type="text" className="form-control bg-warning-subtle" placeholder='Írd be az email címed!' name='email' id='email' onChange={handleChange} defaultValue={data ? data.email : ""} />
             {<ErrorMsg result={result} field='email' />}
           </div>
 
           <div className="mb-4">
-            <input type="password" className="form-control bg-warning-subtle" placeholder='Írd be a jelszavad!' name='password' id='password' onChange={handleChange} />
+            <input type="password" className="form-control bg-warning-subtle" placeholder='Írd be a jelszavad!' name='password' id='password' onChange={handleChange} defaultValue={data ? data.password : ""} />
             {<ErrorMsg result={result} field='password' />}
           </div>
 
           <div className="mb-4">
-            <input type="password" className="form-control bg-warning-subtle" placeholder='Írd be újra a jelszavad!' name='password_confirmation' id='password_confirmation' onChange={handleChange} />
+            <input type="password" className="form-control bg-warning-subtle" placeholder='Írd be újra a jelszavad!' name='password_confirmation' id='password_confirmation' onChange={handleChange} defaultValue={data ? data.password_confirmation : ""} />
           </div>
 
           <div className="mb-2">
