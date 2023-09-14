@@ -100,3 +100,139 @@ Route::middleware('auth:sanctum')->post('/profileupdate', function (Request $req
         'user' => $user,
     ], 201);
 });
+
+Route::middleware('auth:sanctum')->post('/todo', function (Request $request) {
+    $user = $request->user();
+
+    try {
+        $validated = $request->validate([
+            'task' => 'required|min:3|max:255',
+            'comment' => 'nullable|min:3|max:255',
+            'priority' => 'nullable|min:3|max:255',
+            'category' => 'nullable|min:3|max:255'
+        ]);
+    } catch (ValidationException $err) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Nem sikerült a feladat hozzáadása!',
+        ], 422);
+    }
+
+    $todo = $user->tasks()->create($validated);
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Sikeres feladat hozzáadás!',
+        'todo' => $todo,
+    ], 201);
+});
+
+Route::middleware('auth:sanctum')->get('/todos', function (Request $request) {
+    $user = $request->user();
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Sikeres feladatok lekérdezése!',
+        'todos' => $user->tasks()->get(),
+    ], 201);
+});
+
+Route::middleware('auth:sanctum')->post('/todosupdate', function (Request $request) {
+    $user = $request->user();
+
+    try {
+        $validated = $request->validate([
+            'id' => 'required|integer',
+            'task' => 'required|min:3|max:255',
+            'comment' => 'nullable|min:3|max:255',
+            'priority' => 'nullable|min:3|max:255',
+            'category' => 'nullable|min:3|max:255',
+            'task_completed' => 'required|boolean',
+        ]);
+    } catch (ValidationException $err) {
+        return response()->json([
+            'status' => 'error',
+            'errors' => $err->errors(),
+        ], 422);
+    }
+
+    $todo = $user->tasks()->where('id', $validated['id'])->first();
+
+    if (!$todo) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Nem sikerült a módosítás!',
+        ], 422);
+    }
+
+    $todo->update($validated);
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Sikeres módosítás!',
+        'todo' => $todo,
+    ], 201);
+
+});
+
+Route::middleware('auth:sanctum')->post('/tododelete', function (Request $request) {
+    $user = $request->user();
+
+    try {
+        $validated = $request->validate([
+            'id' => 'required|integer',
+        ]);
+    } catch (ValidationException $err) {
+        return response()->json([
+            'status' => 'error',
+            'errors' => $err->errors(),
+        ], 422);
+    }
+
+    $todo = $user->tasks()->where('id', $validated['id'])->first();
+
+    if (!$todo) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Nem sikerült a törlés!',
+        ], 422);
+    }
+
+    $todo->delete();
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'A tennivaló törlésre került!',
+    ], 201);
+});
+
+Route::middleware('auth:sanctum')->post('/selecttodo', function (Request $request) {
+    $user = $request->user();
+
+     try {
+        $validated = $request->validate([
+            'id' => 'required|integer',
+        ]);
+    } catch (ValidationException $err) {
+        return response()->json([
+            'status' => 'error',
+            'errors' => $err->errors(),
+        ], 422);
+    } 
+
+    $todo = $user->tasks()->where('id', $validated['id'])->first();
+
+    if (!$todo) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Nem sikerült a kiválasztás!',
+        ], 422);
+    }
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Sikeres kiválasztás!',
+        'todo' => $todo,
+    ], 201);
+});
+

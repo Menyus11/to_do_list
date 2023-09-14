@@ -25,3 +25,6 @@
 .bg-green {
   background-color: #54A992;
 }
+button > * {
+  pointer-events: none;
+}

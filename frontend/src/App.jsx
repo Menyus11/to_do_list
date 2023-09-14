@@ -3,6 +3,8 @@ import Login from './components/Login'
 import Register from './components/Register'
 import ToDo from './components/ToDo'
 import Profile from './components/Profile'
+import TodoEdit from './components/TodoEdit'
+
 
 function App() {
 
@@ -14,6 +16,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/todo" element={<ToDo/>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/todoedit" element={<TodoEdit />} />
       </Routes>
     </BrowserRouter>
   )

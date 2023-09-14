@@ -66,7 +66,7 @@ const Profile = () => {
         <div>
             <UserNav />
             <div className="container my-5">
-                <form action="" className="bg-senf mx-auto border rounded p-3 w-75 mw488 courgette" onSubmit={handleSubmit}>
+                <form action="" className="bg-senf mx-auto border border-warning rounded p-3 w-75 mw488 courgette shadow" onSubmit={handleSubmit}>
                     <h3 className='text-center mb-4'>Profilom</h3>
 
                     <div className="mb-4">

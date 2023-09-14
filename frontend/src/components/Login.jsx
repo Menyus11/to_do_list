@@ -46,7 +46,7 @@ const Login = () => {
     <>
     <GuestNav />
       <div className="container my-5 courgette">
-        <form action="" className="bg-senf mx-auto border rounded p-3 w-75 mw488" onSubmit={handleSubmit}>
+        <form action="" className="bg-senf mx-auto border border-warning rounded p-3 w-75 mw488 shadow" onSubmit={handleSubmit}>
           <h3 className='text-center mb-4'><span className='lobster'>Belépés</span></h3>
 
           <div className="mb-4">
