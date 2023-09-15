@@ -2,12 +2,11 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Cookie from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
 const UserNav = () => {
 
     const nav = useNavigate();
-    const [user, setUser] = useState(null);
+    const user = JSON.parse(Cookie.get('user'));
     const token = Cookie.get('token');
 
     const config = {
@@ -17,26 +16,13 @@ const UserNav = () => {
         }
     }
 
-    useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/user', config)
-            .then(function (res) {
-                if (!res.ok) {
-                    nav('/')
-                } else {
-                    return res.json()
-                }
-            })
-            .then(res => {
-                setUser(res)
-            })
-    }, [])
-
     const logOutHandle = () => {
         fetch('http://127.0.0.1:8000/api/logout', config)
             .then(res => res.json())
             .then(res => {
                 if (res.status === 'success') {
                     Cookie.remove('token');
+                    Cookie.remove('user');
                     nav('/')
                 } else {
                     res => res.json()
@@ -55,6 +41,9 @@ const UserNav = () => {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <NavLink className="nav-link" aria-current="page" to="/todo"><b>Tennivalók</b></NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/addition"><b>Tennivaló hozzáadás</b></NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/profile"><b>Profilom</b></NavLink>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Cookie from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
 import GuestNav from './GuestNav';
+import Cookies from 'js-cookie';
 
 const Login = () => {
 
@@ -35,6 +36,7 @@ const Login = () => {
       .then(res => {
         if(res.status === 'success') {
           Cookie.set('token', res.token)
+          Cookie.set('user', JSON.stringify(res.user) ) 
            nav('/todo') 
         } else {
           setResult(res);

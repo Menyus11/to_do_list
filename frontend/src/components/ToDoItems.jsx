@@ -4,15 +4,13 @@ import Cookie from 'js-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faPencil, faListCheck } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-
-
+import UserNav from './UserNav';
 
 const ToDoItems = () => {
 
     const [todolist, setTodolist] = useState([]);
     const token = Cookie.get('token');
     const [response, setResponse] = useState(null);
-   /*  const [edit, setEdit] = useState({}); */
     const nav = useNavigate();;
     const [data, setData] = useState({
         task: '',
@@ -21,6 +19,12 @@ const ToDoItems = () => {
         comment: '',
         task_completed: 0
     });
+
+    useEffect(() => {
+        if (!token) {
+            nav('/')
+        }
+    }, [])
 
     const checkChange = (e) => {
 
@@ -62,10 +66,7 @@ const ToDoItems = () => {
 
         const id = e.target.name.slice(12);
 
-       /*  setEdit(prevState => ({
-            ...prevState,
-            id: id
-        })),  */fetch('http://127.0.0.1:8000/api/selecttodo', {
+        fetch('http://127.0.0.1:8000/api/selecttodo', {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -78,7 +79,7 @@ const ToDoItems = () => {
                 Cookie.set('edit', JSON.stringify(res.todo));
                 nav('/todoedit')
             })
-            
+
     }
 
     const configGet = {
@@ -105,64 +106,78 @@ const ToDoItems = () => {
             })
     }, [response])
 
-
     useEffect(() => {
 
         todolist.todos &&
             fetch('http://127.0.0.1:8000/api/todosupdate', configPost)
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res)
+                    /* console.log(res) */
                 })
     }, [data])
 
     return (
+
         <div>
-            {/* {response && response.status === "success" && <div className="alert alert-success text-center" role="alert">
-                {response.message}
-            </div>} */}
+            <UserNav />
 
-            {response && response.status === "error" && <div className="alert alert-danger text-center" role="alert">
-                {response.message}
-            </div>}
+            <div className='container d-flex justify-content-center'>
 
-            <table className="table table-striped table-hover">
+                <div className='row courgette'>
+                    <h3 className='text-center py-2'>Tennivalók</h3>
 
-                <thead>
-                    <tr>
-                        <th scope="col"><FontAwesomeIcon icon={faListCheck} className='px-3' /></th>
-                        <th scope="col">Tennivaló</th>
-                        <th scope="col">Prioritás</th>
-                        <th scope="col">Kategória</th>
-                        <th scope="col">Megjegyzés</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
+                    <div className='col-12 bg-senf p-4 rounded shadow'>
+                        {/* {response && response.status === "success" && <div className="alert alert-success text-center" role="alert">
+                            {response.message}
+                            </div>} */}
 
-                    {todolist.todos && todolist.todos.map((todo, index) => (
+                        {response && response.status === "error" && <div className="alert alert-danger text-center" role="alert">
+                            {response.message}
+                        </div>}
 
-                        <tr key={index} className='align-middle'>
+                        <table className="table table-striped table-hover shadow table-warning ">
 
-                            <td className='px-4'> <input className="form-check-input" type="checkbox" onChange={checkChange}
-                                defaultChecked={todo.task_completed !== 0 ? 'checked' : ''} name={todo.id} /> </td>
-                            <td>{todo.task}</td>
-                            <td>{todo.priority}</td>
-                            <td>{todo.category}</td>
-                            <td>{todo.comment}</td>
-                            <td>
-                                <div className="btn btn-group btn-group-sm p-0 m-0 ">
-                                    <button className="btn btn-outline-primary" onClick={todoEditHandle} name={'pencilButton' + todo.id}><FontAwesomeIcon icon={faPencil} /></button>
-                                    <button className="btn btn-outline-danger" onClick={itemDeleteHandle} name={'deleteButton' + todo.id}><FontAwesomeIcon icon={faTrashCan} /></button>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
+                            <thead>
+                                <tr>
+                                    <th scope="col"><FontAwesomeIcon icon={faListCheck} className='px-3' /></th>
+                                    <th scope="col">Tennivaló</th>
+                                    <th scope="col">Prioritás</th>
+                                    <th scope="col">Kategória</th>
+                                    <th scope="col">Megjegyzés</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-            </table>
+                                {todolist.todos && todolist.todos.map((todo, index) => (
 
+                                    <tr key={index} className='align-middle'>
+
+                                        <td className='px-4'> <input className="form-check-input" type="checkbox" onChange={checkChange}
+                                            defaultChecked={todo.task_completed !== 0 ? 'checked' : ''} name={todo.id} /> </td>
+                                        <td>{todo.task}</td>
+                                        <td>{todo.priority}</td>
+                                        <td>{todo.category}</td>
+                                        <td>{todo.comment}</td>
+                                        <td>
+                                            <div className="btn btn-group btn-group-sm p-0 m-0 ">
+                                                <button className="btn btn-outline-primary" onClick={todoEditHandle} name={'pencilButton' + todo.id}><FontAwesomeIcon icon={faPencil} /></button>
+                                                <button className="btn btn-outline-danger" onClick={itemDeleteHandle} name={'deleteButton' + todo.id}><FontAwesomeIcon icon={faTrashCan} /></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div >
+            </div>
         </div>
+
+
 
 
     )

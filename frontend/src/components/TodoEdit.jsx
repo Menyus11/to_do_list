@@ -11,7 +11,11 @@ const TodoEdit = () => {
     const nav = useNavigate();
 
     useEffect(() => {
-        setData(editCookie);
+        if (!token) {
+            nav('/')
+        } else {
+            setData(editCookie);
+        }
     }, []);
 
     const [data, setData] = useState({
@@ -44,10 +48,11 @@ const TodoEdit = () => {
             .then(res => res.json())
             .then(res => {
                 setResponse(res);
+                Cookie.remove('edit');
                 nav('/todo')
             });
     }
-     
+
     return (
         <div className='container d-flex justify-content-center'>
 

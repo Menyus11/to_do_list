@@ -1,18 +1,24 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import Cookie from 'js-cookie';
+import UserNav from './UserNav';
 
 const Addition = () => {
 
     const token = Cookie.get('token');
     const [response, setResponse] = useState(null);
-
     const [data, setData] = useState({
         task: '',
         priority: 'Nem sürgős',
         category: 'Családi',
         comment: ''
     })
+
+    useEffect(() => {
+        if (!token) {
+            nav('/')
+        }
+    }, [])
 
     const config = {
         method: 'POST',
@@ -30,15 +36,6 @@ const Addition = () => {
         }))
     }
 
-    useEffect(() => {
-        setData({
-            task: '',
-            priority: 'Nem sürgős',
-            category: 'Családi',
-            comment: ''
-        })
-    }, [response]);
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -46,51 +43,65 @@ const Addition = () => {
             .then(res => res.json())
             .then(res => {
                 setResponse(res);
+                setTimeout(() => {
+                    window.location.reload(false)
+                }, 700);
+
             });
     }
 
-/* console.log(data); */
     return (
 
-        <form onSubmit={handleSubmit}>
-            {response && response.status === "success" && <div className="alert alert-success text-center" role="alert">
-                {response.message}
-            </div>}
+        <div>
+            <UserNav />
+            <div className='container d-flex justify-content-center'>
 
-            {response && response.status === "error" && <div className="alert alert-danger text-center" role="alert">
-                {response.message}
-            </div>}
-            <div className='form-group'>
-                <label htmlFor='task'>Tennivaló</label>
-                <input type='text' className='form-control mb-2' id='task' name='task' placeholder='Írja be a tennivalót!'
-                    defaultValue={data.task ? data.task : ""} onChange={handleChange} />
-                    
+                <div className='row courgette w-75'>
+                    <h3 className='text-center py-2'>Tennivalók</h3>
 
-                <label htmlFor='priority'>Prioritás</label>
-                <select className='form-control mb-2' id='priority' name='priority' onChange={handleChange} defaultValue={'Nem sürgős'}>
-                    <option value={'Nem sürgős'} >Nem sürgős</option>
-                    <option value={'Normál'}>Normál</option>
-                    <option value={'Sürgős'}>Sürgős</option>
-                </select>
+                    <div>
+                        <form onSubmit={handleSubmit} className='bg-senf p-4 border border-warning rounded shadow'>
+                            {response && response.status === "success" && <div className="alert alert-success text-center" role="alert">
+                                {response.message}
+                            </div>}
 
-                <label htmlFor='category'>Kategória</label>
-                <select className='form-control mb-2' id='category' name='category' onChange={handleChange} defaultValue={'Családi'}>
-                    <option value={'Családi'}>Családi</option>
-                    <option value={'Személyes'}>Személyes</option>
-                    <option value={'Munka'}>Munka</option>
-                    <option value={'Egyéb'}>Egyéb</option>
-                </select>
+                            {response && response.status === "error" && <div className="alert alert-danger text-center" role="alert">
+                                {response.message}
+                            </div>}
+                            <div className='form-group'>
+                                <label htmlFor='task'>Tennivaló</label>
+                                <input type='text' className='form-control mb-2 bg-warning-subtle' id='task' name='task' placeholder='Írja be a tennivalót!'
+                                    defaultValue={data.task ? data.task : ""} onChange={handleChange} />
 
-                <label htmlFor='notes'>Megjegyzés</label>
-                <textarea className='form-control mb-2' id='comment' name='comment' rows='3' onChange={handleChange} defaultValue={data.comment ? data.comment : ''}></textarea>
 
-                <button type='submit' className='btn btn-primary my-2'>Hozzáadás</button>
+                                <label htmlFor='priority'>Prioritás</label>
+                                <select className='form-control mb-2 bg-warning-subtle' id='priority' name='priority' onChange={handleChange} defaultValue={'Nem sürgős'}>
+                                    <option value={'Nem sürgős'} >Nem sürgős</option>
+                                    <option value={'Normál'}>Normál</option>
+                                    <option value={'Sürgős'}>Sürgős</option>
+                                </select>
 
+                                <label htmlFor='category'>Kategória</label>
+                                <select className='form-control mb-2 bg-warning-subtle' id='category' name='category' onChange={handleChange} defaultValue={'Családi'}>
+                                    <option value={'Családi'}>Családi</option>
+                                    <option value={'Személyes'}>Személyes</option>
+                                    <option value={'Munka'}>Munka</option>
+                                    <option value={'Egyéb'}>Egyéb</option>
+                                </select>
+
+                                <label htmlFor='notes'>Megjegyzés</label>
+                                <textarea className='form-control mb-2 bg-warning-subtle' id='comment' name='comment' rows='3' onChange={handleChange} defaultValue={data.comment ? data.comment : ''}></textarea>
+
+                                <button type='submit' className='btn btn-primary my-2'>Hozzáadás</button>
+
+                            </div>
+                        </form>
+
+                    </div >
+                </div>
             </div>
-        </form>
 
-
-
+        </div>
 
     )
 }

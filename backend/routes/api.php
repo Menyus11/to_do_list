@@ -60,6 +60,7 @@ Route::post('/login', function (Request $request) {
         'status' => 'success',
         'message' => 'Sikeres bejelentkezés!',
         'token' => $token,
+        'user' => $user,
     ], 201);
 });
 
