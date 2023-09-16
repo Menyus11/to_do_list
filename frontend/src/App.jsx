@@ -6,7 +6,6 @@ import Profile from './components/Profile'
 import TodoEdit from './components/TodoEdit'
 import Addition from './components/Addition'
 
-
 function App() {
 
   return (

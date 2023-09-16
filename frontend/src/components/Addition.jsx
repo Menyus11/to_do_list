@@ -20,20 +20,20 @@ const Addition = () => {
         }
     }, [])
 
-    const config = {
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + token,
-            'Content-Type': 'application/json'
-        }, body: JSON.stringify(data)
-    }
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setData(prevState => ({
             ...prevState,
             [name]: value
         }))
+    }
+
+    const config = {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
+        }, body: JSON.stringify(data)
     }
 
     const handleSubmit = (e) => {
@@ -44,7 +44,7 @@ const Addition = () => {
             .then(res => {
                 setResponse(res);
                 setTimeout(() => {
-                    window.location.reload(false)
+                    window.location.reload()
                 }, 700);
 
             });

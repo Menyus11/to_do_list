@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Cookie from 'js-cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan, faPencil, faListCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan, faPencil, faCheck, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import UserNav from './UserNav';
 
@@ -104,7 +104,7 @@ const ToDoItems = () => {
             .then(res => {
                 setTodolist(res)
             })
-    }, [response])
+    }, [response, data])
 
     useEffect(() => {
 
@@ -112,7 +112,7 @@ const ToDoItems = () => {
             fetch('http://127.0.0.1:8000/api/todosupdate', configPost)
                 .then(res => res.json())
                 .then(res => {
-                    /* console.log(res) */
+                    window.location.reload();
                 })
     }, [data])
 
@@ -127,9 +127,6 @@ const ToDoItems = () => {
                     <h3 className='text-center py-2'>Tennivalók</h3>
 
                     <div className='col-12 bg-senf p-4 rounded shadow'>
-                        {/* {response && response.status === "success" && <div className="alert alert-success text-center" role="alert">
-                            {response.message}
-                            </div>} */}
 
                         {response && response.status === "error" && <div className="alert alert-danger text-center" role="alert">
                             {response.message}
@@ -139,22 +136,26 @@ const ToDoItems = () => {
 
                             <thead>
                                 <tr>
-                                    <th scope="col"><FontAwesomeIcon icon={faListCheck} className='px-3' /></th>
+                                    <th scope="col"><FontAwesomeIcon icon={faCheck} className='px-3' /></th>
                                     <th scope="col">Tennivaló</th>
                                     <th scope="col">Prioritás</th>
                                     <th scope="col">Kategória</th>
                                     <th scope="col">Megjegyzés</th>
-                                    <th scope="col"></th>
+                                    <th scope="col"><FontAwesomeIcon icon={faScrewdriverWrench} className='px-4' /></th>
                                 </tr>
                             </thead>
+
                             <tbody>
-
                                 {todolist.todos && todolist.todos.map((todo, index) => (
+                                    todo.task_completed !== 1 &&
 
-                                    <tr key={index} className='align-middle'>
 
-                                        <td className='px-4'> <input className="form-check-input" type="checkbox" onChange={checkChange}
-                                            defaultChecked={todo.task_completed !== 0 ? 'checked' : ''} name={todo.id} /> </td>
+                                    <tr key={index} className={todo.task_completed !== 0 ? 'align-middle text-decoration-line-through table-success' : 'align-middle'} >
+
+                                        <td className='px-4'>
+                                            <input className="form-check-input" type="checkbox" onChange={checkChange}
+                                                defaultChecked={todo.task_completed !== 0 ? 'checked' : ''} name={todo.id} />
+                                        </td>
                                         <td>{todo.task}</td>
                                         <td>{todo.priority}</td>
                                         <td>{todo.category}</td>
@@ -166,6 +167,30 @@ const ToDoItems = () => {
                                             </div>
                                         </td>
                                     </tr>
+
+                                ))}
+
+                                {todolist.todos && todolist.todos.map((todo, index) => (
+                                    todo.task_completed !== 0 &&
+
+                                    <tr key={index} className={todo.task_completed !== 0 ? 'align-middle text-decoration-line-through table-success' : 'align-middle'} >
+
+                                        <td className='px-4'>
+                                            <input className="form-check-input" type="checkbox" onChange={checkChange}
+                                                defaultChecked={todo.task_completed !== 0 ? 'checked' : ''} name={todo.id} />
+                                        </td>
+                                        <td>{todo.task}</td>
+                                        <td>{todo.priority}</td>
+                                        <td>{todo.category}</td>
+                                        <td>{todo.comment}</td>
+                                        <td>
+                                            <div className="btn btn-group btn-group-sm p-0 m-0 ">
+                                                <button className="btn btn-outline-primary" onClick={todoEditHandle} name={'pencilButton' + todo.id}><FontAwesomeIcon icon={faPencil} /></button>
+                                                <button className="btn btn-outline-danger" onClick={itemDeleteHandle} name={'deleteButton' + todo.id}><FontAwesomeIcon icon={faTrashCan} /></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
                                 ))}
                             </tbody>
 
