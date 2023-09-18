@@ -124,7 +124,7 @@ const ToDoItems = () => {
             <div className='container d-flex justify-content-center'>
 
                 <div className='row courgette'>
-                    <h3 className='text-center py-2'>Tennivalók</h3>
+                    <h3 className='text-center py-2'>To-dos</h3>
 
                     <div className='col-12 bg-senf p-4 rounded shadow'>
 
@@ -137,10 +137,10 @@ const ToDoItems = () => {
                             <thead>
                                 <tr>
                                     <th scope="col"><FontAwesomeIcon icon={faCheck} className='px-3' /></th>
-                                    <th scope="col">Tennivaló</th>
-                                    <th scope="col">Prioritás</th>
-                                    <th scope="col">Kategória</th>
-                                    <th scope="col">Megjegyzés</th>
+                                    <th scope="col">To-dos</th>
+                                    <th scope="col">Priority</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Comment</th>
                                     <th scope="col"><FontAwesomeIcon icon={faScrewdriverWrench} className='px-4' /></th>
                                 </tr>
                             </thead>

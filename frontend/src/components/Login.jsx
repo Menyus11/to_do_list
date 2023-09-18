@@ -48,18 +48,18 @@ const Login = () => {
     <GuestNav />
       <div className="container my-5 courgette">
         <form action="" className="bg-senf mx-auto border border-warning rounded p-3 w-75 mw488 shadow" onSubmit={handleSubmit} autoComplete='off'>
-          <h3 className='text-center mb-4'><span className='lobster'>Belépés</span></h3>
+          <h3 className='text-center mb-4'><span className='lobster'>Login</span></h3>
 
           <div className="mb-4">
-            <input type="text" className="form-control bg-warning-subtle " placeholder='Írd be az email címed!' name='email' id='email' onChange={handleChange} />
+            <input type="text" className="form-control bg-warning-subtle " placeholder='Enter your email address!' name='email' id='email' onChange={handleChange} />
           </div>
 
           <div className="mb-4">
-            <input type="password" className="form-control bg-warning-subtle" placeholder='Írd be a jelszavad!' name='password' id='password' onChange={handleChange} />
+            <input type="password" className="form-control bg-warning-subtle" placeholder='Enter your password!' name='password' id='password' onChange={handleChange} />
           </div>
 
           <div className="mb-2">
-            <button className="btn btn-outline-success form-control"><span>Belépek</span></button>
+            <button className="btn btn-outline-success form-control"><span>Enter</span></button>
           </div>
 
           {result && result.status === 'error' && <div className="alert alert-danger mt-3 text-center">{result.message}</div>}

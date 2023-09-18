@@ -30,7 +30,7 @@ Route::post('/register', function (Request $request) {
     } catch (ValidationException $e) {
         return response()->json([
             'status' => 'error',
-            'message' => 'Sikertelen regisztráció!',
+            'message' => 'Registration failed!',
             'errors' => $e->errors(),
         ], 422);
     }
@@ -38,7 +38,7 @@ Route::post('/register', function (Request $request) {
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Sikeres regisztráció, beléphet!',
+        'message' => 'Successful registration, you can enter!',
         'user' => $user,
     ], 201);
 });
@@ -50,7 +50,7 @@ Route::post('/login', function (Request $request) {
     if (!$user || !Hash::check($request->password, $user->password)) {
         return response()->json([
             'status' => 'error',
-            'message' => 'Sikertelen bejelentkezés!',
+            'message' => 'Login failed!',
         ], 401);
     }
 
@@ -58,7 +58,7 @@ Route::post('/login', function (Request $request) {
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Sikeres bejelentkezés!',
+        'message' => 'Login successful!',
         'token' => $token,
         'user' => $user,
     ], 201);
@@ -69,7 +69,7 @@ Route::middleware('auth:sanctum')->get('/logout', function (Request $request) {
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Sikeres kijelentkezés!',
+        'message' => 'Logout successful!',
     ], 201);
 });
 
@@ -97,7 +97,7 @@ Route::middleware('auth:sanctum')->post('/profileupdate', function (Request $req
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Sikeres adatmódosítás!',
+        'message' => 'Successful data modification!',
         'user' => $user,
     ], 201);
 });
@@ -115,7 +115,7 @@ Route::middleware('auth:sanctum')->post('/todo', function (Request $request) {
     } catch (ValidationException $err) {
         return response()->json([
             'status' => 'error',
-            'message' => 'Nem sikerült a feladat hozzáadása!',
+            'message' => 'Failed to add to-do!',
         ], 422);
     }
 
@@ -123,7 +123,7 @@ Route::middleware('auth:sanctum')->post('/todo', function (Request $request) {
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Sikeres feladat hozzáadás!',
+        'message' => 'Successful to-do addition!',
         'todo' => $todo,
     ], 201);
 });
@@ -133,7 +133,7 @@ Route::middleware('auth:sanctum')->get('/todos', function (Request $request) {
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Sikeres feladatok lekérdezése!',
+        'message' => 'To-do were queried successfully!',
         'todos' => $user->tasks()->get(),
     ], 201);
 });
@@ -162,7 +162,7 @@ Route::middleware('auth:sanctum')->post('/todosupdate', function (Request $reque
     if (!$todo) {
         return response()->json([
             'status' => 'error',
-            'message' => 'Nem sikerült a módosítás!',
+            'message' => 'Modification failed!',
         ], 422);
     }
 
@@ -170,7 +170,7 @@ Route::middleware('auth:sanctum')->post('/todosupdate', function (Request $reque
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Sikeres módosítás!',
+        'message' => 'Successful modification!',
         'todo' => $todo,
     ], 201);
 
@@ -195,7 +195,7 @@ Route::middleware('auth:sanctum')->post('/tododelete', function (Request $reques
     if (!$todo) {
         return response()->json([
             'status' => 'error',
-            'message' => 'Nem sikerült a törlés!',
+            'message' => 'Delete failed!',
         ], 422);
     }
 
@@ -203,7 +203,7 @@ Route::middleware('auth:sanctum')->post('/tododelete', function (Request $reques
 
     return response()->json([
         'status' => 'success',
-        'message' => 'A tennivaló törlésre került!',
+        'message' => 'The to-do has been deleted!',
     ], 201);
 });
 
@@ -226,13 +226,13 @@ Route::middleware('auth:sanctum')->post('/selecttodo', function (Request $reques
     if (!$todo) {
         return response()->json([
             'status' => 'error',
-            'message' => 'Nem sikerült a kiválasztás!',
+            'message' => 'Selection failed!',
         ], 422);
     }
 
     return response()->json([
         'status' => 'success',
-        'message' => 'Sikeres kiválasztás!',
+        'message' => 'Successful selection!',
         'todo' => $todo,
     ], 201);
 });

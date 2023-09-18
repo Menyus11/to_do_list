@@ -57,7 +57,7 @@ const TodoEdit = () => {
         <div className='container d-flex justify-content-center'>
 
             <div className='row courgette'>
-                <h3 className='text-center py-2'>Tennivaló szerkesztése</h3>
+                <h3 className='text-center py-2'>Edit To-do</h3>
                 <form onSubmit={handleSubmit} className='border border-warning rounded bg-senf shadow p-2' autoComplete='off'>
                     <div className='col'>
 
@@ -73,36 +73,36 @@ const TodoEdit = () => {
                             editCookie &&
                             <div>
                                 <div className='col mb-3'>
-                                    <label htmlFor="task">Feladat</label>
+                                    <label htmlFor="task">To-do</label>
                                     <input className='form-control' type="text" name="task" defaultValue={editCookie.task} onChange={handleChange} />
                                 </div>
 
                                 <div className='col mb-3'>
-                                    <label htmlFor="priority">Prioritás</label>
+                                    <label htmlFor="priority">Priority</label>
                                     <select className='form-control' name="priority" defaultValue={editCookie.priority} onChange={handleChange}>
-                                        <option defaultValue={'Nem sürgős'} >Nem sürgős</option>
-                                        <option defaultValue={'Normál'}>Normál</option>
-                                        <option defaultValue={'Sürgős'}>Sürgős</option>
+                                        <option defaultValue={'Nem sürgős'} >Low</option>
+                                        <option defaultValue={'Normál'}>Normal</option>
+                                        <option defaultValue={'Sürgős'}>High</option>
                                     </select>
                                 </div>
 
                                 <div className='col mb-3'>
-                                    <label htmlFor="category">Kategória</label>
+                                    <label htmlFor="category">Category</label>
                                     <select className='form-control' name="category" defaultValue={editCookie.category} onChange={handleChange}>
-                                        <option defaultValue={'Családi'}>Családi</option>
-                                        <option defaultValue={'Személyes'}>Személyes</option>
-                                        <option defaultValue={'Munka'}>Munka</option>
-                                        <option defaultValue={'Egyéb'}>Egyéb</option>
+                                        <option defaultValue={'Családi'}>Family</option>
+                                        <option defaultValue={'Személyes'}>Personal</option>
+                                        <option defaultValue={'Munka'}>Work</option>
+                                        <option defaultValue={'Egyéb'}>Other</option>
                                     </select>
                                 </div>
 
                                 <div className='col mb-3'>
-                                    <label htmlFor="comment">Megjegyzés</label>
+                                    <label htmlFor="comment">Comment</label>
                                     <textarea className='form-control' name="comment" defaultValue={editCookie.comment} onChange={handleChange} rows="8" />
                                 </div>
 
                                 <div className='col mb-3'>
-                                    <button type="submit" className="btn btn-primary form-control">Módosítás</button>
+                                    <button type="submit" className="btn btn-success form-control">Modification</button>
                                 </div>
                             </div>
                         }

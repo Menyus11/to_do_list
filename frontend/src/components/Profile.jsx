@@ -68,7 +68,7 @@ const Profile = () => {
             <UserNav />
             <div className="container my-5">
                 <form action="" className="bg-senf mx-auto border border-warning rounded p-3 w-75 mw488 courgette shadow" onSubmit={handleSubmit} autoComplete='off'>
-                    <h3 className='text-center mb-4'>Profilom</h3>
+                    <h3 className='text-center mb-4'>My profile</h3>
 
                     <div className="mb-4">
                         <input type="text" className="form-control bg-warning-subtle" name='name' id='name' onChange={handleChange} defaultValue={user ? user.name : ''} />
@@ -81,13 +81,13 @@ const Profile = () => {
                     </div>
 
                     <div className="mb-4">
-                        <input type="password" className="form-control bg-warning-subtle" placeholder='Írd be a jelszavad, ha meg akarod változtatni!' 
+                        <input type="password" className="form-control bg-warning-subtle" placeholder='Enter your password if you would like to change it!' 
                         name='password' id='password' onChange={handleChange} />
                         {<ErrorMsg result={result} field='password' />}
                     </div>
 
                     <div className="mb-2">
-                        <button className="btn btn-outline-success form-control">Módosítás</button>
+                        <button className="btn btn-outline-success form-control">Update</button>
                     </div>
 
                     {result && result.status === 'success' &&

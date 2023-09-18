@@ -13,10 +13,10 @@ const GuestNav = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <NavLink className="nav-link" aria-current="page" to="/"><b>Belépés</b></NavLink>
+                                <NavLink className="nav-link" aria-current="page" to="/"><b>Login</b></NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/register"><b>Regisztráció</b></NavLink>
+                                <NavLink className="nav-link" to="/register"><b>Register</b></NavLink>
                             </li>
                         </ul>
                     </div>

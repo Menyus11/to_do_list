@@ -40,17 +40,17 @@ const UserNav = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <NavLink className="nav-link" aria-current="page" to="/todo"><b>Tennivalók</b></NavLink>
+                                <NavLink className="nav-link" aria-current="page" to="/todo"><b>To-dos</b></NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/addition"><b>Tennivaló hozzáadás</b></NavLink>
+                                <NavLink className="nav-link" to="/addition"><b>Add a to-do</b></NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/profile"><b>Profilom</b></NavLink>
+                                <NavLink className="nav-link" to="/profile"><b>My profile</b></NavLink>
                             </li>
                         </ul>
-                        <div className='mx-auto'>{user && 'Üdvözlünk ' + user.name + '!'}</div>
-                        <div className="btn btn-outline-danger" onClick={logOutHandle}>Kilépés</div>
+                        <div className='mx-auto'>{user && 'Welcome ' + user.name + '!'}</div>
+                        <div className="btn btn-outline-danger" onClick={logOutHandle}>Logout</div>
                     </div>
                 </div>
             </nav>
