@@ -9,6 +9,21 @@ if you find any errors in it, please let me know, Thanks for watching!
 
 ---
 
+### Built With
+
+Backend:
+   - Laravel
+     
+Frontend:
+   - React
+
+CSS:
+   - Bootstrap
+   - Font Awesome
+
+---
+
+
 ### Licence   
 
 Distributed under the MIT License. See LICENSE.txt for more information.
