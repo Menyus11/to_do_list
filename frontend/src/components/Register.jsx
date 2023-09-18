@@ -42,11 +42,11 @@ const Register = () => {
     <>
       <GuestNav />
       <div className="container my-5 courgette">
-        <form action="" className="bg-senf mx-auto border border-warning rounded p-3 w-75 mw488 shadow" onSubmit={handleSubmit}>
+        <form action="" className="bg-senf mx-auto border border-warning rounded p-3 w-75 mw488 shadow" onSubmit={handleSubmit} autoComplete='off'>
           <h3 className='text-center mb-4'>Regisztráció</h3>
 
           <div className="mb-4">
-            <input type="text" className="form-control bg-warning-subtle" placeholder='Írd be a neved!' name='name' id='name' onChange={handleChange} defaultValue={data.name} />
+            <input type="text" className="form-control bg-warning-subtle" placeholder='Írd be a neved!' name='name' id='name' onChange={handleChange} defaultValue={data.name} autoComplete='off'/>
             {<ErrorMsg result={result} field="name" />}
           </div>
 

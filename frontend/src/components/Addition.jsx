@@ -46,7 +46,6 @@ const Addition = () => {
                 setTimeout(() => {
                     window.location.reload()
                 }, 700);
-
             });
     }
 
@@ -60,7 +59,7 @@ const Addition = () => {
                     <h3 className='text-center py-2'>Tennivalók</h3>
 
                     <div>
-                        <form onSubmit={handleSubmit} className='bg-senf p-4 border border-warning rounded shadow'>
+                        <form onSubmit={handleSubmit} className='bg-senf p-4 border border-warning rounded shadow' autoComplete='off'>
                             {response && response.status === "success" && <div className="alert alert-success text-center" role="alert">
                                 {response.message}
                             </div>}
@@ -72,7 +71,6 @@ const Addition = () => {
                                 <label htmlFor='task'>Tennivaló</label>
                                 <input type='text' className='form-control mb-2 bg-warning-subtle' id='task' name='task' placeholder='Írja be a tennivalót!'
                                     defaultValue={data.task ? data.task : ""} onChange={handleChange} />
-
 
                                 <label htmlFor='priority'>Prioritás</label>
                                 <select className='form-control mb-2 bg-warning-subtle' id='priority' name='priority' onChange={handleChange} defaultValue={'Nem sürgős'}>

@@ -59,6 +59,7 @@ const Profile = () => {
             .then(res => res.json())
             .then(res => {
                 setResult(res);
+                Cookie.set('user', JSON.stringify(res.user));
             })
     }
 
@@ -66,7 +67,7 @@ const Profile = () => {
         <div>
             <UserNav />
             <div className="container my-5">
-                <form action="" className="bg-senf mx-auto border border-warning rounded p-3 w-75 mw488 courgette shadow" onSubmit={handleSubmit}>
+                <form action="" className="bg-senf mx-auto border border-warning rounded p-3 w-75 mw488 courgette shadow" onSubmit={handleSubmit} autoComplete='off'>
                     <h3 className='text-center mb-4'>Profilom</h3>
 
                     <div className="mb-4">
@@ -80,7 +81,8 @@ const Profile = () => {
                     </div>
 
                     <div className="mb-4">
-                        <input type="password" className="form-control bg-warning-subtle" placeholder='Írd be a jelszavad!' name='password' id='password' onChange={handleChange} />
+                        <input type="password" className="form-control bg-warning-subtle" placeholder='Írd be a jelszavad, ha meg akarod változtatni!' 
+                        name='password' id='password' onChange={handleChange} />
                         {<ErrorMsg result={result} field='password' />}
                     </div>
 

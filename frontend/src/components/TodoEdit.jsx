@@ -58,7 +58,7 @@ const TodoEdit = () => {
 
             <div className='row courgette'>
                 <h3 className='text-center py-2'>Tennivaló szerkesztése</h3>
-                <form onSubmit={handleSubmit} className='border border-warning rounded bg-senf shadow p-2'>
+                <form onSubmit={handleSubmit} className='border border-warning rounded bg-senf shadow p-2' autoComplete='off'>
                     <div className='col'>
 
 
