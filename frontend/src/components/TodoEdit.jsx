@@ -20,8 +20,8 @@ const TodoEdit = () => {
 
     const [data, setData] = useState({
         task: '',
-        priority: 'Nem sürgős',
-        category: 'Családi',
+        priority: 'Low',
+        category: 'Family',
         comment: ''
     })
 
@@ -80,19 +80,19 @@ const TodoEdit = () => {
                                 <div className='col mb-3'>
                                     <label htmlFor="priority">Priority</label>
                                     <select className='form-control' name="priority" defaultValue={editCookie.priority} onChange={handleChange}>
-                                        <option defaultValue={'Nem sürgős'} >Low</option>
-                                        <option defaultValue={'Normál'}>Normal</option>
-                                        <option defaultValue={'Sürgős'}>High</option>
+                                        <option defaultValue={'Low'} >Low</option>
+                                        <option defaultValue={'Normal'}>Normal</option>
+                                        <option defaultValue={'High'}>High</option>
                                     </select>
                                 </div>
 
                                 <div className='col mb-3'>
                                     <label htmlFor="category">Category</label>
                                     <select className='form-control' name="category" defaultValue={editCookie.category} onChange={handleChange}>
-                                        <option defaultValue={'Családi'}>Family</option>
-                                        <option defaultValue={'Személyes'}>Personal</option>
-                                        <option defaultValue={'Munka'}>Work</option>
-                                        <option defaultValue={'Egyéb'}>Other</option>
+                                        <option defaultValue={'Family'}>Family</option>
+                                        <option defaultValue={'Personal'}>Personal</option>
+                                        <option defaultValue={'Work'}>Work</option>
+                                        <option defaultValue={'Other'}>Other</option>
                                     </select>
                                 </div>
 

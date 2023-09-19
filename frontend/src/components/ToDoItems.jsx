@@ -14,8 +14,8 @@ const ToDoItems = () => {
     const nav = useNavigate();;
     const [data, setData] = useState({
         task: '',
-        priority: 'Nem sürgős',
-        category: 'Családi',
+        priority: 'Low',
+        category: 'Family',
         comment: '',
         task_completed: 0
     });

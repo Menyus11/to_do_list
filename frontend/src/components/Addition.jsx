@@ -9,8 +9,8 @@ const Addition = () => {
     const [response, setResponse] = useState(null);
     const [data, setData] = useState({
         task: '',
-        priority: 'Nem sürgős',
-        category: 'Családi',
+        priority: 'Low',
+        category: 'Family',
         comment: ''
     })
 
@@ -74,18 +74,18 @@ const Addition = () => {
                                     defaultValue={data.task ? data.task : ""} onChange={handleChange} />
 
                                 <label htmlFor='priority'>Priority</label>
-                                <select className='form-control mb-2 bg-warning-subtle' id='priority' name='priority' onChange={handleChange} defaultValue={'Nem sürgős'}>
-                                    <option value={'Nem sürgős'} >Low</option>
-                                    <option value={'Normál'}>Normal</option>
-                                    <option value={'Sürgős'}>High</option>
+                                <select className='form-control mb-2 bg-warning-subtle' id='priority' name='priority' onChange={handleChange} defaultValue={'Low'}>
+                                    <option value={'Low'} >Low</option>
+                                    <option value={'Normal'}>Normal</option>
+                                    <option value={'High'}>High</option>
                                 </select>
 
                                 <label htmlFor='category'>Category</label>
-                                <select className='form-control mb-2 bg-warning-subtle' id='category' name='category' onChange={handleChange} defaultValue={'Családi'}>
-                                    <option value={'Családi'}>Family</option>
-                                    <option value={'Személyes'}>Personal</option>
-                                    <option value={'Munka'}>Work</option>
-                                    <option value={'Egyéb'}>Other</option>
+                                <select className='form-control mb-2 bg-warning-subtle' id='category' name='category' onChange={handleChange} defaultValue={'Family'}>
+                                    <option value={'Family'}>Family</option>
+                                    <option value={'Personal'}>Personal</option>
+                                    <option value={'Work'}>Work</option>
+                                    <option value={'Other'}>Other</option>
                                 </select>
 
                                 <label htmlFor='notes'>Comment</label>

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->string("task");
             $table->string("comment")->default("");
-            $table->tinyText("priority")->default("Nem sürgős");
-            $table->tinyText("category")->default("Családi");
+            $table->tinyText("priority")->default("Low");
+            $table->tinyText("category")->default("Family");
             $table->boolean("task_completed")->default(false);
             $table->timestamps();
 
